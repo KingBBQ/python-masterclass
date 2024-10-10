@@ -7,7 +7,7 @@ screen_width = 1000
 screen_height = 1000
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Platformer')
+pygame.display.set_caption('Gregoris Spiel')
 
 
 
@@ -38,16 +38,18 @@ class Player():
 			self.jumped = True
 		
 
-		self.vel_y += 1 
+		self.vel_y = self.vel_y + 1 
 
 		if self.vel_y > 10:
 			self.vel_y = 10
 
-		
-
-		if (self.rect.y > screen_height - 100) and (self.vel_y > 0):
-
+		if (self.rect.y > screen_height - 100) and (self.vel_y > 0): # Wenn der Spieler auf dem Boden ist
 			self.vel_y = 0
+
+
+		if (self.rect.y <  100) and (self.vel_y < 0): # Wenn der Spieler ganz oben ist
+			self.vel_y = 0
+
 
 		self.rect.y = self.rect.y + self.vel_y
 
@@ -122,7 +124,7 @@ world_data = [
 #automasische tile size anpassung
 tile_size = screen_width / len(world_data)
 
-spieler1 = Player(100, screen_height - 130)
+spieler1 = Player(200, screen_height - 130)
 
 
 world = World(world_data)

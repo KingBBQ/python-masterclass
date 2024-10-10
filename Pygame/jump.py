@@ -3,21 +3,22 @@ from pygame.locals import *
 
 pygame.init()
 
-screen_width = 1000
-screen_hight = 1000
-
-#hier wird die tile size automatisch angepasst
+screen_width = 500
+screen_hight = 500
 
 #hier wird die map definiert
 map = [
+[ 0, 0, 4, 0, 0],
 [ 0, 0, 0, 0, 0],
-[ 0, 0, 0, 0, 0],
-[ 0, 0, 0, 0, 0],
+[ 0, 0, 1, 0, 0],
 [ 0, 0, 0, 0, 0],
 [ 2, 2, 2, 2, 2]
 ]
 
+
+#hier wird die tile size automatisch angepasst
 tile_size = screen_width / len(map)
+
 
 screen = pygame.display.set_mode((screen_width, screen_hight))
 pygame.display.set_caption("Platformer")
@@ -34,9 +35,9 @@ lava_tile = pygame.transform.scale(pygame.image.load('img/lava.png'), (tile_size
 grass_tile = pygame.transform.scale(pygame.image.load('img/grass.png'), (tile_size, tile_size))
 platform_tile = pygame.transform.scale(pygame.image.load('img/platform.png'), (tile_size, tile_size))
 
-def drawMap():
+def zeichneKarte():
     screen.blit(bg_img, (0, 0))
-    screen.blit(sun_img, (100, 100))
+    screen.blit(sun_img, (600, 600))
    
 
    
@@ -45,6 +46,8 @@ def drawMap():
         spalte_Nummer = 0
         for spalte in zeile:
         
+            print(spalte_Nummer)
+            print(zeilen_Nummer)
             if spalte == 1:
                 screen.blit(dirt_tile, (spalte_Nummer * tile_size, zeilen_Nummer * tile_size))
             
@@ -63,7 +66,7 @@ def drawMap():
 
     
 
-drawMap()
+zeichneKarte()
 
 run = True
 while run == True:
